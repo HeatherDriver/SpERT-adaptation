@@ -2,7 +2,7 @@ from collections import OrderedDict
 from typing import List
 from torch.utils.data import Dataset as TorchDataset
 
-import src.sampling
+from . import sampling
 
 
 class RelationType:

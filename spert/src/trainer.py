@@ -11,8 +11,8 @@ from torch.optim import Optimizer
 from transformers import PreTrainedModel
 from transformers import PreTrainedTokenizer
 
-import src.util
-from src.opt import tensorboardX
+from . import util
+from .opt import tensorboardX
 
 
 class BaseTrainer:
