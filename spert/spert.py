@@ -31,7 +31,8 @@ def _eval():
 
 
 def _get_latest_filepath():
-    return max(glob.glob(f'{SPERT_DIR}/data/log/scierc_eval/*/predictions*.json'))
+    prediction_result_path = f'{SPERT_DIR}/data/log/scierc_eval/*/predictions*.json'
+    return max(glob.glob(prediction_result_path))
 
 def _get_prediction():
     filepath = _get_latest_filepath()
@@ -42,6 +43,12 @@ def _get_prediction():
 
 def predict(data:list=None):
     if data is not None:
+        for doc in data:
+            assert isinstance(doc, dict)
+            assert 'tokens' in doc
+            doc['entities'] = [{"type": "Task", "start": 0, "end": 1}, {"type": "Task", "start": 1, "end": 2}]
+            doc['relations'] = [{"type": "Part-of", "head": 0, "tail": 1}]
+            doc['orig_id'] = 1
         with open(f'{SPERT_DIR}/data.json', 'w') as f:
             json.dump(data, f)
     arg_parser = argparse.ArgumentParser(add_help=False)
