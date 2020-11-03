@@ -1,8 +1,10 @@
+import os
 import argparse
 
+SPERT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 def _add_common_args(arg_parser):
-    arg_parser.add_argument('--config', type=str)
+    arg_parser.add_argument('--config', type=str, default=SPERT_DIR+'/configs/eval.conf')
 
     # Input
     arg_parser.add_argument('--types_path', type=str, help="Path to type specifications")

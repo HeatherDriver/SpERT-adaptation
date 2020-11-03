@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-curr_dir=$(pwd)
+spert_path="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; cd .. ; pwd -P )"
 
-mkdir -p data
-mkdir -p data/models
+mkdir -p $spert_path/data
+mkdir -p $spert_path/data/models
 
-wget -r -nH --cut-dirs=100 --reject "index.html*" --no-parent http://lavis.cs.hs-rm.de/storage/spert/public/models/scierc/ -P ${curr_dir}/data/models/scierc
+wget -r -nH --cut-dirs=100 --reject "index.html*" --no-parent http://lavis.cs.hs-rm.de/storage/spert/public/models/scierc/ -P $spert_path/data/models/scierc
