@@ -7,10 +7,10 @@ import torch
 from sklearn.metrics import precision_recall_fscore_support as prfs
 from transformers import BertTokenizer
 
-from spert import util
-from spert.entities import Document, Dataset, EntityType
-from spert.input_reader import JsonInputReader
-from spert.opt import jinja2
+import .util
+from .entities import Document, Dataset, EntityType
+from .input_reader import JsonInputReader
+from .opt import jinja2
 
 SCRIPT_PATH = os.path.dirname(os.path.realpath(__file__))
 

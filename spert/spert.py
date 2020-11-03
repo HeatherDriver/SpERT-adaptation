@@ -2,8 +2,8 @@ import argparse
 
 from args import train_argparser, eval_argparser
 from config_reader import process_configs
-from spert import input_reader
-from spert.spert_trainer import SpERTTrainer
+from .src import input_reader
+from .src.spert_trainer import SpERTTrainer
 
 
 def __train(run_args):
@@ -28,6 +28,11 @@ def _eval():
     process_configs(target=__eval, arg_parser=arg_parser)
 
 
+def predict():
+    arg_parser = argparse.ArgumentParser(add_help=False)
+    args, _ = arg_parser.parse_known_args()
+    _eval()
+    
 if __name__ == '__main__':
     arg_parser = argparse.ArgumentParser(add_help=False)
     arg_parser.add_argument('mode', type=str, help="Mode: 'train' or 'eval'")

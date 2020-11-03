@@ -11,10 +11,8 @@ from torch.optim import Optimizer
 from transformers import PreTrainedModel
 from transformers import PreTrainedTokenizer
 
-from spert import util
-from spert.opt import tensorboardX
-
-SCRIPT_PATH = os.path.dirname(os.path.realpath(__file__))
+import .util
+from .opt import tensorboardX
 
 
 class BaseTrainer:
