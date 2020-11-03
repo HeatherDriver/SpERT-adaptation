@@ -2,7 +2,7 @@ import random
 
 import torch
 
-import .util
+import src.util
 
 
 def create_train_sample(doc, neg_entity_count: int, neg_rel_count: int, max_span_size: int, rel_type_count: int):

@@ -7,8 +7,8 @@ from typing import Iterable, List
 from tqdm import tqdm
 from transformers import BertTokenizer
 
-import .util
-from .entities import Dataset, EntityType, RelationType, Entity, Relation, Document
+import src.util
+from src.entities import Dataset, EntityType, RelationType, Entity, Relation, Document
 
 
 class BaseInputReader(ABC):
