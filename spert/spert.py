@@ -1,7 +1,7 @@
 import argparse
 
-from args import train_argparser, eval_argparser
-from config_reader import process_configs
+from .args import train_argparser, eval_argparser
+from .config_reader import process_configs
 from .src import input_reader
 from .src.spert_trainer import SpERTTrainer
 
