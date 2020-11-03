@@ -19,24 +19,30 @@ PyTorch code for SpERT: "Span-based Entity and Relation Transformer". For a desc
 ### Fetch data
 Fetch converted (to specific JSON format) CoNLL04 \[1\] (we use the same split as \[4\]), SciERC \[2\] and ADE \[3\] datasets (see referenced papers for the original datasets):
 ```
-bash ./scripts/fetch_datasets.sh
+./scripts/fetch_datasets.sh
 ```
 
 Fetch model checkpoints (best out of 5 runs for each dataset):
 ```
-bash ./scripts/fetch_models.sh
+./scripts/fetch_models.sh
 ```
 The attached ADE model was trained on split "1" ("ade_split_1_train.json" / "ade_split_1_test.json") under "data/datasets/ade".
 
-## Examples
-Evaluate CoNLL04 on test dataset:
+### Installation
+
 ```
-python ./spert.py eval --config configs/example_eval.conf
+cd spert
+pip install .
 ```
 
-Train CoNLL04 on train dataset, evaluate on dev dataset:
-```
-python ./spert.py train --config configs/example_train.conf
+## Examples
+Evaluate SciERC on test dataset:
+``` python
+import spert
+
+data = [{"tokens": ["Due", "to", "the", "black-box", "nature", "of", "deep", "learning", "models", ",", "methods", "for", "explaining", "the", "models\u2019", "results", "are", "crucial", "to", "gain", "trust", "from", "humans", "and", "support", "collaboration", "between", "AIs", "and", "humans", ".", "In", "this", "paper", ",", "we", "consider", "several", "model-agnostic", "and", "model-specific", "explanation", "methods", "for", "CNNs", "for", "text", "classification", "and", "conduct", "three", "human-grounded", "evaluations", ",", "focusing", "on", "different", "purposes", "of", "explanations", ":", "(", "1", ")", "revealing", "model", "behavior", ",", "(", "2", ")", "justifying", "model", "predictions", ",", "and", "(", "3", ")", "helping", "humans", "investigate", "uncertain", "predictions", ".", "The", "results", "highlight", "dissimilar", "qualities", "of", "the", "various", "explanation", "methods", "we", "consider", "and", "show", "the", "degree", "to", "which", "these", "methods", "could", "serve", "for", "each", "purpose", "."], "entities": [{"type": "Task", "start": 0, "end": 1}, {"type": "Task", "start": 1, "end": 2}], "relations": [{"type": "Part-of", "head": 0, "tail": 1}], "orig_id": 1}]
+
+spert.predict(data)
 ```
 
 ## Notes

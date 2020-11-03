@@ -1,6 +1,6 @@
 import argparse
 
-from .args import train_argparser, eval_argparser
+from .args import train_argparser, eval_argparser, SPERT_DIR
 from .config_reader import process_configs
 from .src import input_reader
 from .src.spert_trainer import SpERTTrainer
@@ -28,7 +28,10 @@ def _eval():
     process_configs(target=__eval, arg_parser=arg_parser)
 
 
-def predict():
+def predict(data:list=None):
+    if data is not None:
+        with open(f'{SPERT_DIR}/data.json', 'w') as f:
+            json.dump(DATA, f)
     arg_parser = argparse.ArgumentParser(add_help=False)
     args, _ = arg_parser.parse_known_args()
     _eval()
