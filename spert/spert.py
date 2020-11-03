@@ -1,3 +1,5 @@
+import glob
+import json
 import argparse
 
 from .args import train_argparser, eval_argparser, SPERT_DIR
@@ -28,13 +30,25 @@ def _eval():
     process_configs(target=__eval, arg_parser=arg_parser)
 
 
+def _get_latest_filepath():
+    return max(glob.glob(f'{SPERT_DIR}/data/log/scierc_eval/*/predictions*.json'))
+
+def _get_prediction():
+    filepath = _get_latest_filepath()
+    with open(filepath) as f:
+        preds = f.readlines()
+        preds = eval(preds[0])
+    return preds
+
 def predict(data:list=None):
     if data is not None:
         with open(f'{SPERT_DIR}/data.json', 'w') as f:
-            json.dump(DATA, f)
+            json.dump(data, f)
     arg_parser = argparse.ArgumentParser(add_help=False)
     args, _ = arg_parser.parse_known_args()
     _eval()
+    return _get_prediction()
+
     
 if __name__ == '__main__':
     predict()
