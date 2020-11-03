@@ -148,7 +148,9 @@ class Evaluator:
                 entity_span = entity[:2]
                 span_tokens = util.get_span_tokens(tokens, entity_span)
                 entity_type = entity[2].identifier
-                converted_entity = dict(type=entity_type, start=span_tokens[0].index, end=span_tokens[-1].index + 1)
+                entity_confidence = entity[3]
+                converted_entity = dict(type=entity_type, start=span_tokens[0].index, 
+                                        end=span_tokens[-1].index + 1, confidence=entity_confidence)
                 converted_entities.append(converted_entity)
             converted_entities = sorted(converted_entities, key=lambda e: e['start'])
 
@@ -161,16 +163,18 @@ class Evaluator:
                 head_span_tokens = util.get_span_tokens(tokens, head_span)
                 tail_span_tokens = util.get_span_tokens(tokens, tail_span)
                 relation_type = relation[2].identifier
+                relation_confidence = relation[3]
 
                 converted_head = dict(type=head_type, start=head_span_tokens[0].index,
                                       end=head_span_tokens[-1].index + 1)
                 converted_tail = dict(type=tail_type, start=tail_span_tokens[0].index,
                                       end=tail_span_tokens[-1].index + 1)
 
-                head_idx = converted_entities.index(converted_head)
-                tail_idx = converted_entities.index(converted_tail)
+                converted_entities_without_confidence = [{k:d[k] for k in d if k != 'confidence'} for d in converted_entities]
+                head_idx = converted_entities_without_confidence.index(converted_head)
+                tail_idx = converted_entities_without_confidence.index(converted_tail)
 
-                converted_relation = dict(type=relation_type, head=head_idx, tail=tail_idx)
+                converted_relation = dict(type=relation_type, head=head_idx, tail=tail_idx, confidence=relation_confidence)
                 converted_relations.append(converted_relation)
             converted_relations = sorted(converted_relations, key=lambda r: r['head'])
 
