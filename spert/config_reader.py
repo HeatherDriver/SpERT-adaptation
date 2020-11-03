@@ -1,6 +1,6 @@
 import copy
 import multiprocessing as mp
-
+from . import args
 
 def process_configs(target, arg_parser):
     args, _ = arg_parser.parse_known_args()
@@ -36,6 +36,8 @@ def _read_config(path):
             run[0] = repeat
         else:
             key, value = stripped_line.split('=')
+            if 'path' in key:
+                value = f'{args.SPERT_DIR}/{value.strip()}'
             key, value = (key.strip(), value.strip())
             run[1][key] = value
 

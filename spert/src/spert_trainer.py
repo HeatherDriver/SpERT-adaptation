@@ -10,15 +10,15 @@ from torch.utils.data import DataLoader
 from transformers import AdamW, BertConfig
 from transformers import BertTokenizer
 
-from spert import models
-from spert import sampling
-from spert import util
-from spert.entities import Dataset
-from spert.evaluator import Evaluator
-from spert.input_reader import JsonInputReader, BaseInputReader
-from spert.loss import SpERTLoss, Loss
+from . import models
+from . import sampling
+from . import util
+from .entities import Dataset
+from .evaluator import Evaluator
+from .input_reader import JsonInputReader, BaseInputReader
+from .loss import SpERTLoss, Loss
+from .trainer import BaseTrainer
 from tqdm import tqdm
-from spert.trainer import BaseTrainer
 
 SCRIPT_PATH = os.path.dirname(os.path.realpath(__file__))
 
