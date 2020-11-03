@@ -36,8 +36,8 @@ def _read_config(path):
             run[0] = repeat
         else:
             key, value = stripped_line.split('=')
-            if 'path' in value:
-                value = f'{args.SPERT_DIR}/{value}'
+            if 'path' in key:
+                value = f'{args.SPERT_DIR}/{value.strip()}'
             key, value = (key.strip(), value.strip())
             run[1][key] = value
 
