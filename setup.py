@@ -13,7 +13,7 @@ setup(
                 ('data', data_files)],
     package_data={'': ['*.json'], '': ['*.bin', '*.txt']},
     include_package_data=True,
-    version='1.0.0',
+    version='2.0.0',
     description='spert',
     author='Me',
     license='MIT',
