@@ -8,7 +8,7 @@ from sklearn.metrics import precision_recall_fscore_support as prfs
 from transformers import BertTokenizer
 
 from . import util
-from .entities import Document, Dataset, EntityType
+from .entities import Document, Dataset, MathEntityType
 from .input_reader import JsonInputReader
 from .opt import jinja2
 
@@ -41,7 +41,7 @@ class Evaluator:
         self._gt_entities = []  # ground truth
         self._pred_entities = []  # prediction
 
-        self._pseudo_entity_type = EntityType('Entity', 1, 'Entity', 'Entity')  # for span only evaluation
+        self._pseudo_entity_type = MathEntityType('Entity', 1, 'Entity', 'Entity')  # for span only evaluation
 
         self._convert_gt(self._dataset.documents)
 
